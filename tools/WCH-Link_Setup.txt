@@ -1,0 +1,13 @@
+============================================================ 
+  ONE-TIME SETUP: Install WinUSB for WCH-Link 
+============================================================ 
+ 
+1. Plug in your WCH-Link and set it to ARM mode (WCH-LinkUtility). 
+2. In Zadig (opening next):  Options -> List All Devices 
+3. Select "WCH-Link" or "WCH-Link ^(interface 0^)" in the dropdown 
+4. Choose driver "WinUSB" (not USB Serial) 
+5. Click "Replace Driver" or "Install Driver" 
+6. Close Zadig when done. 
+ 
+Then run this script again to flash. 
+============================================================ 
