@@ -299,10 +299,10 @@ If project-name auto-detection fails, pass the name explicitly:
 
 ```bat
 cd stm32_openocd_toolkit
-SETUP_AND_FLASH.bat
+SETUP_AND_FLASH.bat MyProjectName
 ```
 
-With explicit project name:
+Pass the STM32CubeIDE project name explicitly on Windows:
 
 ```bat
 SETUP_AND_FLASH.bat MyProjectName
@@ -323,7 +323,7 @@ cd stm32_openocd_toolkit
 ```bat
 set OPENOCD_SCRIPTS=C:\path\to\openocd\scripts
 cd stm32_openocd_toolkit
-SETUP_AND_FLASH.bat
+SETUP_AND_FLASH.bat MyProjectName
 ```
 
 ---
@@ -335,7 +335,7 @@ After each code change:
 1. Build in STM32CubeIDE.  
 2. From the toolkit directory run:
    - **Linux:** `./SETUP_AND_FLASH.sh`  
-   - **Windows:** `SETUP_AND_FLASH.bat`  
+   - **Windows:** `SETUP_AND_FLASH.bat MyProjectName`  
 
 No need to reopen the IDE for flashing—just build then run the script.
 
