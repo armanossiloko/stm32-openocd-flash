@@ -2,17 +2,17 @@
 setlocal
 set "SCRIPT_DIR=%~dp0"
 set "PROJECT_DIR=%SCRIPT_DIR%"
-if exist "%SCRIPT_DIR%..\.project" set "PROJECT_DIR=%SCRIPT_DIR%.."
+if not exist "%SCRIPT_DIR%.project" if exist "%SCRIPT_DIR%..\.project" set "PROJECT_DIR=%SCRIPT_DIR%.."
 cd /d "%PROJECT_DIR%"
 
 set "PROJECT_NAME=%~1"
-if "%PROJECT_NAME%"=="" if exist ".project" (
-    for /f "delims=" %%P in ('powershell -NoProfile -Command "$m=[regex]::Match((Get-Content ''.project'' -Raw), ''<name>([^<]+)</name>''); if ($m.Success) { $m.Groups[1].Value }"') do set "PROJECT_NAME=%%P"
+if not defined PROJECT_NAME if exist ".project" (
+    for /f "tokens=2 delims=<>" %%P in ('findstr /R /C:"<name>[^<][^<]*</name>" ".project"') do if not defined PROJECT_NAME set "PROJECT_NAME=%%P"
 )
-if "%PROJECT_NAME%"=="" (
+if not defined PROJECT_NAME (
     for %%F in (*.ioc) do if not defined PROJECT_NAME set "PROJECT_NAME=%%~nF"
 )
-if "%PROJECT_NAME%"=="" set "PROJECT_NAME=Stm32Project"
+if not defined PROJECT_NAME set "PROJECT_NAME=Stm32Project"
 
 set "OPENOCD_CMD=openocd"
 if not "%OPENOCD_SCRIPTS%"=="" set "OPENOCD_CMD=openocd -s ""%OPENOCD_SCRIPTS%"""
